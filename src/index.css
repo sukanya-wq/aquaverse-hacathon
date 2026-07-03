@@ -1,0 +1,885 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom Keyframe Animations */
+@keyframes scanner {
+  0% {
+    top: 0%;
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0.1;
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
+@keyframes bubble-rise-hero {
+  0% {
+    transform: translateY(0) scale(0.85) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-112vh) scale(1.1) translateX(35px);
+    opacity: 0;
+  }
+}
+
+/* Custom Utility Classes */
+@utility animate-bubble-rise {
+  animation: bubble-rise-hero linear infinite;
+}
+@utility animate-scanner {
+  position: absolute;
+  animation: scanner 3.5s ease-in-out infinite;
+}
+
+@utility animate-float {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+@utility animate-float-delayed {
+  animation: float-gentle 9s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+@utility animate-float-fast {
+  animation: float-gentle 4.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@utility animate-glow-pulse-cyan {
+  animation: glow-pulse-cyan 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse-cyan {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(6, 182, 212, 0.2), inset 0 0 10px rgba(6, 182, 212, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5), inset 0 0 20px rgba(6, 182, 212, 0.35);
+  }
+}
+
+/* Silver Border Animations */
+@keyframes silver-glow-pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1.0;
+  }
+}
+
+@keyframes metallic-sheen-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes metallic-sheen-y {
+  0% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 50% 200%;
+  }
+}
+
+@utility animate-silver-glow {
+  animation: silver-glow-pulse 3s ease-in-out infinite;
+}
+
+@utility animate-sheen-x {
+  animation: metallic-sheen-x 4s linear infinite;
+}
+
+@utility animate-sheen-y {
+  animation: metallic-sheen-y 4s linear infinite;
+}
+
+/* Scrollbar Customization for Dark Ocean Theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617; /* slate-950 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b; /* slate-800 */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4; /* cyan-500 */
+}
+
+/* Clip Path spotlight cone for abyssal mapping sub */
+.clip-path-spotlight {
+  clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 60%);
+}
+
+@keyframes swim-lr {
+  0% {
+    left: -150px;
+    transform: scaleX(1);
+  }
+  100% {
+    left: calc(100% + 150px);
+    transform: scaleX(1);
+  }
+}
+
+@keyframes swim-rl {
+  0% {
+    left: calc(100% + 150px);
+    transform: scaleX(-1);
+  }
+  100% {
+    left: -150px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes ray-shimmer {
+  0%, 100% {
+    opacity: 0.18;
+    transform: scaleX(1) skewX(-15deg);
+  }
+  50% {
+    opacity: 0.42;
+    transform: scaleX(1.15) skewX(-11deg);
+  }
+}
+
+@keyframes ray-shimmer-alt {
+  0%, 100% {
+    opacity: 0.12;
+    transform: scaleX(1.1) skewX(-24deg);
+  }
+  50% {
+    opacity: 0.30;
+    transform: scaleX(0.9) skewX(-19deg);
+  }
+}
+
+@utility animate-shimmer-ray {
+  animation: ray-shimmer 7s ease-in-out infinite;
+}
+
+@utility animate-shimmer-ray-alt {
+  animation: ray-shimmer-alt 10s ease-in-out infinite;
+}
+
+/* Realistic Jellyfish Animations */
+@keyframes jelly-pulse {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  32% {
+    transform: scale(0.92, 1.15) translateY(-14px);
+  }
+  40% {
+    transform: scale(1.06, 0.88) translateY(-16px);
+  }
+  70% {
+    transform: scale(0.98, 0.96) translateY(5px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes sway-t1 {
+  0%, 100% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  50% {
+    transform: rotate(-5deg) skewX(-6deg);
+  }
+}
+
+@keyframes sway-t2 {
+  0%, 100% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  50% {
+    transform: rotate(6deg) skewX(8deg);
+  }
+}
+
+@keyframes sway-t3 {
+  0%, 100% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  50% {
+    transform: rotate(-3deg) skewX(4deg);
+  }
+}
+
+@keyframes wave-r1 {
+  0%, 100% {
+    transform: skewX(0deg) scaleX(1);
+  }
+  33% {
+    transform: skewX(-5deg) scaleX(0.95);
+  }
+  66% {
+    transform: skewX(5deg) scaleX(1.05);
+  }
+}
+
+@keyframes wave-r2 {
+  0%, 100% {
+    transform: skewX(0deg) scaleX(1);
+  }
+  33% {
+    transform: skewX(6deg) scaleX(1.05);
+  }
+  66% {
+    transform: skewX(-6deg) scaleX(0.95);
+  }
+}
+
+@keyframes wave-r3 {
+  0%, 100% {
+    transform: skewX(0deg) translateY(0);
+  }
+  50% {
+    transform: skewX(-3deg) translateY(-2px);
+  }
+}
+
+@utility animate-jelly-pulse {
+  animation: jelly-pulse 5.5s ease-in-out infinite;
+}
+@utility animate-sway-t1 {
+  animation: sway-t1 4.5s ease-in-out infinite;
+}
+@utility animate-sway-t2 {
+  animation: sway-t2 5.5s ease-in-out infinite;
+}
+@utility animate-sway-t3 {
+  animation: sway-t3 5s ease-in-out infinite;
+}
+@utility animate-wave-r1 {
+  animation: wave-r1 6s ease-in-out infinite;
+}
+@utility animate-wave-r2 {
+  animation: wave-r2 5s ease-in-out infinite;
+}
+@utility animate-wave-r3 {
+  animation: wave-r3 7s ease-in-out infinite;
+}
+
+/* Realistic Fish Animations */
+@keyframes fish-glide {
+  0% {
+    transform: translateX(-15px) translateY(0px) rotate(1deg);
+  }
+  50% {
+    transform: translateX(15px) translateY(-8px) rotate(-1deg);
+  }
+  100% {
+    transform: translateX(-15px) translateY(0px) rotate(1deg);
+  }
+}
+
+@keyframes fish-tail-swish {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-12deg);
+  }
+  75% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes fish-fin-flutter {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.88) translateY(1px);
+  }
+}
+
+@keyframes fish-pectoral {
+  0%, 100% {
+    transform: rotate(0deg) scaleX(1);
+  }
+  50% {
+    transform: rotate(18deg) scaleX(0.8);
+  }
+}
+
+@utility animate-fish-glide {
+  animation: fish-glide 6s ease-in-out infinite;
+}
+
+@utility animate-fish-tail-swish {
+  animation: fish-tail-swish 1.2s ease-in-out infinite;
+}
+
+@utility animate-fish-fin-flutter {
+  animation: fish-fin-flutter 0.8s ease-in-out infinite;
+}
+
+@utility animate-fish-pectoral {
+  animation: fish-pectoral 0.6s ease-in-out infinite;
+}
+
+/* Realistic Submarine & Divers Animations */
+@keyframes sub-hover {
+  0%, 100% {
+    transform: translateY(0) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-0.5deg);
+  }
+}
+
+@keyframes sub-light-sway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes sub-propeller-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes diver-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) translateX(2px) rotate(-1.5deg);
+  }
+}
+
+@keyframes diver-float-delayed {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) translateX(-3px) rotate(1deg);
+  }
+}
+
+@keyframes diver-leg-kick {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes diver-leg-kick-alt {
+  0%, 100% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+}
+
+@utility animate-sub-hover {
+  animation: sub-hover 7s ease-in-out infinite;
+}
+
+@utility animate-sub-light-sway {
+  animation: sub-light-sway 4s ease-in-out infinite;
+}
+
+@utility animate-sub-propeller-spin {
+  animation: sub-propeller-spin 0.25s linear infinite;
+}
+
+@utility animate-diver-float {
+  animation: diver-float 5s ease-in-out infinite;
+}
+
+@utility animate-diver-float-delayed {
+  animation: diver-float-delayed 6s ease-in-out infinite;
+}
+
+@utility animate-diver-leg-kick {
+  animation: diver-leg-kick 1s ease-in-out infinite;
+}
+
+@utility animate-diver-leg-kick-alt {
+  animation: diver-leg-kick-alt 1s ease-in-out infinite;
+}
+
+/* Realistic Anglerfish Animations */
+@keyframes angler-idle {
+  0%, 100% {
+    transform: translateY(0px) translateX(-4px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-5px) translateX(4px) rotate(1deg);
+  }
+}
+@keyframes angler-fin-flutter {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.92) translateY(0.5px);
+  }
+}
+@keyframes angler-tail-swish {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(8deg);
+  }
+}
+@keyframes angler-lure-sway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+}
+@keyframes angler-pectoral {
+  0%, 100% {
+    transform: rotate(0deg) scaleX(1);
+  }
+  50% {
+    transform: rotate(14deg) scaleX(0.95);
+  }
+}
+
+@utility animate-angler-idle {
+  animation: angler-idle 5.5s ease-in-out infinite;
+}
+@utility animate-angler-fin-flutter {
+  animation: angler-fin-flutter 1s ease-in-out infinite;
+}
+@utility animate-angler-tail-swish {
+  animation: angler-tail-swish 1s ease-in-out infinite;
+}
+@utility animate-angler-lure-sway {
+  animation: angler-lure-sway 3s ease-in-out infinite;
+}
+@utility animate-angler-pectoral {
+  animation: angler-pectoral 0.7s ease-in-out infinite;
+}
+
+/* Realistic Lanternfish Animations */
+@keyframes lantern-idle {
+  0%, 100% {
+    transform: translateY(0px) translateX(-5px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(-6px) translateX(5px) rotate(-0.5deg);
+  }
+}
+@keyframes lantern-fin-flutter {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.9) translateY(0.5px);
+  }
+}
+@keyframes lantern-tail-swish {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-14deg);
+  }
+  75% {
+    transform: rotate(14deg);
+  }
+}
+@keyframes lantern-pectoral {
+  0%, 100% {
+    transform: rotate(0deg) scaleX(1);
+  }
+  50% {
+    transform: rotate(20deg) scaleX(0.85);
+  }
+}
+
+@utility animate-lantern-idle {
+  animation: lantern-idle 5s ease-in-out infinite;
+}
+@utility animate-lantern-fin-flutter {
+  animation: lantern-fin-flutter 0.7s ease-in-out infinite;
+}
+@utility animate-lantern-tail-swish {
+  animation: lantern-tail-swish 0.8s ease-in-out infinite;
+}
+@utility animate-lantern-pectoral {
+  animation: lantern-pectoral 0.5s ease-in-out infinite;
+}
+
+/* Realistic Clownfish Animations */
+@keyframes clownfish-idle {
+  0%, 100% {
+    transform: translateY(0px) translateX(-3px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(-4px) translateX(3px) rotate(0.5deg);
+  }
+}
+@keyframes clownfish-fin-flutter {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.94) translateY(0.2px);
+  }
+}
+@keyframes clownfish-tail-swish {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-12deg);
+  }
+  75% {
+    transform: rotate(12deg);
+  }
+}
+@keyframes clownfish-pectoral {
+  0%, 100% {
+    transform: rotate(0deg) scaleX(1);
+  }
+  50% {
+    transform: rotate(18deg) scaleX(0.9);
+  }
+}
+
+@utility animate-clownfish-idle {
+  animation: clownfish-idle 4.5s ease-in-out infinite;
+}
+@utility animate-clownfish-fin-flutter {
+  animation: clownfish-fin-flutter 0.8s ease-in-out infinite;
+}
+@utility animate-clownfish-tail-swish {
+  animation: clownfish-tail-swish 0.9s ease-in-out infinite;
+}
+@utility animate-clownfish-pectoral {
+  animation: clownfish-pectoral 0.6s ease-in-out infinite;
+}
+
+/* Realistic Squid Animations */
+@keyframes squid-jet {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  25% {
+    transform: translateY(-10px) scaleY(1.05) scaleX(0.95);
+  }
+  50% {
+    transform: translateY(-3px) scaleY(0.98);
+  }
+}
+@keyframes squid-fin-ripple {
+  0%, 100% {
+    transform: scaleY(1) skewX(0deg);
+  }
+  50% {
+    transform: scaleY(0.92) skewX(2deg);
+  }
+}
+@keyframes squid-tentacle-1 {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(8deg) translateY(2px); }
+}
+@keyframes squid-tentacle-2 {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-6deg) translateY(3px); }
+}
+@keyframes squid-tentacle-3 {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(7deg) translateY(-2px); }
+}
+@keyframes squid-tentacle-4 {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-9deg) translateY(1px); }
+}
+
+@utility animate-squid-jet {
+  animation: squid-jet 3.5s ease-in-out infinite;
+}
+@utility animate-squid-fin-ripple {
+  animation: squid-fin-ripple 1.2s ease-in-out infinite;
+}
+@utility animate-squid-tentacle-1 {
+  animation: squid-tentacle-1 1.8s ease-in-out infinite;
+}
+@utility animate-squid-tentacle-2 {
+  animation: squid-tentacle-2 2s ease-in-out infinite;
+}
+@utility animate-squid-tentacle-3 {
+  animation: squid-tentacle-3 1.6s ease-in-out infinite;
+}
+@utility animate-squid-tentacle-4 {
+  animation: squid-tentacle-4 2.2s ease-in-out infinite;
+}
+
+/* Realistic Sea Turtle Animations */
+@keyframes turtle-glide {
+  0%, 100% {
+    transform: translateY(0) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+@keyframes turtle-left-wing {
+  0%, 100% { transform: rotate(0deg) scaleX(1); }
+  50% { transform: rotate(-25deg) scaleX(0.9); }
+}
+@keyframes turtle-right-wing {
+  0%, 100% { transform: rotate(0deg) scaleX(1); }
+  50% { transform: rotate(25deg) scaleX(0.9); }
+}
+@keyframes turtle-rear-flap {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes turtle-head-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px) rotate(1deg); }
+}
+
+@utility animate-turtle-glide {
+  animation: turtle-glide 7s ease-in-out infinite;
+}
+@utility animate-turtle-left-wing {
+  animation: turtle-left-wing 3.5s ease-in-out infinite;
+}
+@utility animate-turtle-right-wing {
+  animation: turtle-right-wing 3.5s ease-in-out infinite;
+}
+@utility animate-turtle-rear-flap {
+  animation: turtle-rear-flap 2s ease-in-out infinite;
+}
+@utility animate-turtle-head-bob {
+  animation: turtle-head-bob 4s ease-in-out infinite;
+}
+
+/* Realistic Barracuda Animations */
+@keyframes barracuda-idle {
+  0%, 100% {
+    transform: translateY(0px) translateX(-2px);
+  }
+  50% {
+    transform: translateY(-3px) translateX(2px);
+  }
+}
+@keyframes barracuda-tail-swish {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-16deg);
+  }
+  75% {
+    transform: rotate(16deg);
+  }
+}
+@keyframes barracuda-fin-flutter {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.9) translateY(0.5px);
+  }
+}
+@keyframes barracuda-pectoral {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+@utility animate-barracuda-idle {
+  animation: barracuda-idle 4s ease-in-out infinite;
+}
+@utility animate-barracuda-tail-swish {
+  animation: barracuda-tail-swish 0.5s ease-in-out infinite;
+}
+@utility animate-barracuda-fin-flutter {
+  animation: barracuda-fin-flutter 0.4s ease-in-out infinite;
+}
+@utility animate-barracuda-pectoral {
+  animation: barracuda-pectoral 0.3s ease-in-out infinite;
+}
+
+/* Holographic Laser Sonar Sweep Animations */
+@keyframes scan-sweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  95% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@utility animate-scan-line {
+  animation: scan-sweep 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* --- Cinema IMAX Theater Mode Styles --- */
+
+@keyframes cinematic-drift {
+  0% {
+    transform: scale(1.04) translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.08) translate(10px, -8px) rotate(0.3deg);
+  }
+  100% {
+    transform: scale(1.04) translate(-8px, 10px) rotate(-0.3deg);
+  }
+}
+
+/* Auto-dim standard navigation rails to let the movie experience take center stage */
+#app-root.cinematic-active #desktop-nav,
+#app-root.cinematic-active #nav-pledge-btn,
+#app-root.cinematic-active #depth-sidebar-tracker,
+#app-root.cinematic-active #sidebar-footer-info {
+  opacity: 0.1;
+  pointer-events: none;
+  transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s ease-in-out;
+}
+
+/* Allow hovering over menus to quickly bring them back with high-tech glow */
+#app-root.cinematic-active #desktop-nav:hover,
+#app-root.cinematic-active #nav-pledge-btn:hover,
+#app-root.cinematic-active #depth-sidebar-tracker:hover {
+  opacity: 0.95;
+  pointer-events: auto;
+}
+
+/* Cinema pan and scan slow drift for background images */
+#app-root.cinematic-active img,
+#app-root.cinematic-active .object-cover {
+  animation: cinematic-drift 24s ease-in-out infinite alternate !important;
+  transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: center center;
+}
+
+/* Enhance page padding slightly when letterbox bars are active so content isn't clipped */
+#app-root.cinematic-active main {
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+  transition: padding 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Floating film grain noise filter simulation */
+#app-root.cinematic-active::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 29;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Fullscreen Plunge Transition Bubbles Animation */
+@keyframes dive-bubble-rise {
+  0% {
+    transform: translateY(100vh) scale(0.35) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+    transform: translateY(85vh) scale(1) translateX(12px) rotate(15deg);
+  }
+  50% {
+    transform: translateY(45vh) scale(1.1) translateX(-18px) rotate(45deg);
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-150px) scale(0.7) translateX(8px) rotate(90deg);
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+

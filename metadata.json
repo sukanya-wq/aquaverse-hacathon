@@ -1,0 +1,6 @@
+{
+  "name": "Ocean Guard",
+  "description": "An immersive and interactive guide to ocean zones, marine creatures, human threats, and conservation efforts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

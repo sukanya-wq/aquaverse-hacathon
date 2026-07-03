@@ -1,4 +1,6 @@
 # 🌊 Ocean Guard: Immersive Marine Exploration & Conservation
+LIVE DEMO LINK---
+https://aquaverse-hacathon.vercel.app/
 
 Ocean Guard is an immersive, highly interactive full-stack digital experience designed to explore the depths of Earth's oceans, understand marine biology across distinct vertical zones, diagnose water contaminants using advanced machine vision, and advocate for proactive global stewardship.
 
